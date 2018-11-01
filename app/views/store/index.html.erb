@@ -8,4 +8,34 @@
 	<div class="sticker">
 		<%= image_tag('pbwinshirt.png', alt: 'plantbased of all things!') %>
 	</div>
+
+
+
+	<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    
+  </article>
+
+ <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+ 			
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Save the Planet 😄"
+          data-name="Plantbased.win"
+          data-amount="2500"
+          data-label="Buy now"
+          data-locale="auto"
+		
+          ></script>
+          <script>
+        // Hide default stripe button, be careful there if you
+        // have more than 1 button of that class
+        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+    </script>
+    <button type="submit" class="yourCustomClass">Buy Now</button>
+<% end %>
 </div>
